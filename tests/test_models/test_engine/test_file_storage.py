@@ -113,12 +113,7 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
-
-
-class TestFileStorageGetCount(unittest.TestCase):
-    """Test the new get and count methods of FileStorage"""
-
-    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    
     def test_get_method(self):
         """Test the get method"""
         new_state = State(name="California")
@@ -126,8 +121,7 @@ class TestFileStorageGetCount(unittest.TestCase):
         models.storage.save()
         result = models.storage.get(State, new_state.id)
         self.assertEqual(result, new_state)
-
-    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    
     def test_count_method(self):
         """Test the count method"""
         initial_count = models.storage.count()
@@ -137,3 +131,27 @@ class TestFileStorageGetCount(unittest.TestCase):
         self.assertEqual(models.storage.count(), initial_count + 1)
         self.assertEqual(models.storage.count(State),
                          len(models.storage.all(State)))
+
+
+# class TestFileStorageGetCount(unittest.TestCase):
+#     """Test the new get and count methods of FileStorage"""
+
+#     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+#     def test_get_method(self):
+#         """Test the get method"""
+#         new_state = State(name="California")
+#         models.storage.new(new_state)
+#         models.storage.save()
+#         result = models.storage.get(State, new_state.id)
+#         self.assertEqual(result, new_state)
+
+#     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+#     def test_count_method(self):
+#         """Test the count method"""
+#         initial_count = models.storage.count()
+#         new_state = State(name="Texas")
+#         models.storage.new(new_state)
+#         models.storage.save()
+#         self.assertEqual(models.storage.count(), initial_count + 1)
+#         self.assertEqual(models.storage.count(State),
+#                          len(models.storage.all(State)))
