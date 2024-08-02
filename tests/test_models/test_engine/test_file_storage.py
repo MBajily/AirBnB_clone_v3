@@ -135,4 +135,5 @@ class TestFileStorageGetCount(unittest.TestCase):
         models.storage.new(new_state)
         models.storage.save()
         self.assertEqual(models.storage.count(), initial_count + 1)
-        self.assertEqual(models.storage.count(State), len(models.storage.all(State)))
+        self.assertEqual(models.storage.count(State),
+                         len(models.storage.all(State)))

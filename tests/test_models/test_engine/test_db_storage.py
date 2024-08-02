@@ -108,4 +108,5 @@ class TestDBStorageGetCount(unittest.TestCase):
         models.storage.new(new_state)
         models.storage.save()
         self.assertEqual(models.storage.count(), initial_count + 1)
-        self.assertEqual(models.storage.count(State), models.storage.all(State).count())
+        self.assertEqual(models.storage.count(State),
+                         models.storage.all(State).count())
