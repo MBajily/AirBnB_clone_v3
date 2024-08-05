@@ -81,7 +81,7 @@ class DBStorage:
         """
         if cls and id:
             objs = self.all(cls)
-            return objs.get(f"{cls}.{id}")
+            return objs.get(f"{cls.__name__}.{id}")
         return None
 
     def count(self, cls=None):
